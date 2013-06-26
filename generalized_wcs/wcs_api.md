@@ -62,10 +62,10 @@ and uses `pywcs`  to create the coordinate system object and the transforms.
 In more detail
 --------------
 
-* [WCS API](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/wcs_api.md#wcs-api)
-* [Selector Object](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/selector.md)
-* [Regions API](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/region_api.md)
-* [Coordinate Systems API](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/coordinate_systems_api.md)
+* [WCS API](https://github.com/nden/astropy-api/blob/generalized_wcs/generalized_wcs/wcs_api.md#wcs-api)
+* [Selector Object](https://github.com/nden/astropy-api/blob/generalized_wcs/generalized_wcs_api/selector.md)
+* [Regions API](https://github.com/nden/astropy-api/blob/generalized_wcs/generalized_wcs_api/region_api.md)
+* [Coordinate Systems API](https://github.com/nden/astropy-api/blob/generalized_wcs/generalized_wcs_api/coordinate_systems_api.md)
 
 WCS API
 -------
