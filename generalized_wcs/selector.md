@@ -28,7 +28,7 @@ figuring out how to match input coordinates with a transform.
 
 An example of a selector of regions of an IFU is below. It has an additional attribute
 `regions_map` which is a byte array with regions labels. The actual definitions of the
-regions are read in from a JSON file, see the [Region API](https://github.com/nden/astropy-api/blob/generalized_wcs/generalized_wcs_api/region_api.md)
+regions are read in from a JSON file, see the [Region API](https://github.com/nden/astropy-api/blob/generalized_wcs/generalized_wcs/region_api.md)
 
     class RegionsSelector(SelectorModel):
         def __init__(self, labels, transforms, regions):
