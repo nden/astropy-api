@@ -12,7 +12,7 @@ is left for specific classes.
 The `__call__` method is defined by subclasses and implements the real work of
 figuring out how to match input coordinates with a transform.
 
-    class SelectorModel(model):
+    class SelectorModel(object):
         """
         Parameters
         ----------
@@ -27,7 +27,7 @@ figuring out how to match input coordinates with a transform.
            raise NotImplementedError
 
 An example of a selector of regions of an IFU is below. It has an additional attribute
-`regions_map` which is a byte array with regions labels. The actual definitions of the
+`regions_map` which is a byte array with region labels. The actual definitions of the
 regions are read in from a JSON file, see the [Region API](https://github.com/nden/astropy-api/blob/generalized_wcs/generalized_wcs/region_api.md)
 
     class RegionsSelector(SelectorModel):

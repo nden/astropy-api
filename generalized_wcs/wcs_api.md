@@ -1,20 +1,15 @@
 WCS data model
 --------------
 
+Written by Nadia Dencheva (@nden) with ideas and feedback from
+Perry Greenfield (@perrygrienfield) and Mike Droettboom (@mdboom) and taking into account
+discussions at the latest astropy coordination meeting (Baltimore, 2012).
+
 This document describes the WCS data model. WCS serialization is not discussed here.
 
 Motivation for this work was discussed [previously](https://mail.google.com/mail/u/1/?ui=2&shva=1#search/perrygreenfield/13efbb0f6b4b3932).
 
-Authors
--------
-* Nadia Dencheva (@nden)
-* Perry Greenfield (@perrygrienfield)
-
-Thanks for feedback from:
-
-* Mike Droettboom (@mdboom)
-
-The basic requirements for this data model are:
+The basic requirements for the data model are:
 
 * Perform the transformation from pixels to world coordinates and back.
 * Handle multiple transforms ( IFU detectors but not limited to that).
