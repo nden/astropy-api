@@ -6,8 +6,8 @@ A [prototype](https://github.com/nden/code-experiments/tree/master/generalized_w
 [example](https://github.com/nden/code-experiments/tree/master/generalized_wcs_api/prototype/jwst_example) of using this
 proposal to construct JWST WCS.
 
-High level  interface
----------------------
+User interface
+--------------
 
 Create a WCS object:
 
