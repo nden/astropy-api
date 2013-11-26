@@ -1,6 +1,11 @@
 WCS data model - (WIP)
 --------------
 
+
+A [prototype](https://github.com/nden/code-experiments/tree/master/generalized_wcs_api/prototype) implementation and an 
+[example](https://github.com/nden/code-experiments/tree/master/generalized_wcs_api/prototype/jwst_example) of using this
+proposal to construct JWST WCS.
+
 High level  interface
 ---------------------
 
