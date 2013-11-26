@@ -64,7 +64,7 @@ In more detail
 WCS API
 -------
 
-The WCS class is represented as a directed graph whose nodes are coordinate systems and edges are transfroms
+The WCS class is represented as a directed graph whose nodes are coordinate systems and edges are transformations
 between them. This allows one to specify multiple coordinate systems and the transformations between them. 
 (The [prototype](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/wcs.py) uses `networkx`.)
 
