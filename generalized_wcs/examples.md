@@ -93,5 +93,7 @@ IFU Example:
              super(IFUWCS, self).__init__(trans, coord_sys)
 
          def create_coordinate_system(self, wcs_info):
-           """Construts an instance of wsc.CoordinateSystem"""
+           """
+           Construts an instance of wcs.CoordinateSystem which in this case is a composite systems of a SkyFrame and SpectralFrame.
+           """
            return coord_sys
