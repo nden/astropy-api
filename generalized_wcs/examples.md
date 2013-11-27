@@ -1,9 +1,24 @@
-These are examples of how an instrument scientist can use the package to construct a WCS for an instrument. All examples assume the WCS information was already read in from somewhere (either a FITS header or a JSON file). This does not deal with WCS serialization issues.)
+These are examples of how an instrument scientist can use the package to construct a WCS for an instrument. All examples assume the WCS information was already read in from somewhere (either a FITS header or a JSON file). This does not deal with WCS serialization issues.
 
+
+JSON files used in the examples:
+
+[dist_info](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/spec_regions.json) - coonstains models for distortion corrections
+
+
+[spec_info](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/spec_wcs.json) - contsains spectral models
+
+
+[regions_def](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/regions_miri.json) - constains definitions of IFU regions as polygon vertices in pixel space
+
+[wcs_regions](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/wcs_regions.json) - contains basic WCS for each IFU region as offsets from a primary region. The WCS for the primary region is in the FITS header
+
+[spec_regions](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/spec_regions.json) - contains spectral models for all regions
+          
+          
 
     class ImagingWCS(WCS):
          """
-         An example [dist_info](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/distortion_image.json) JSON file.
          wcs_info is a dict of basic FITS WCS keywords from the FITS header
          
          """
@@ -41,8 +56,6 @@ Spectral WCS:
 
     class SpectralWCS(WCS):
 
-        """ Example [spec_info](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/spec_wcs.json) """
-
         def __init__(self, spec_info):
             trans = self.create_spectral_transform(spec_info)
             coord_sys = self.create_coordinate_system(wcs_info)
@@ -73,16 +86,9 @@ An examplel of a composite spectral transform
 IFU Example:
 
     class IFUWCS(WCS):
-          """ 
-          Examples of JSON reference files.
-          
-          [regions_def](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/regions_miri.json)
-          [wcs_regions](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/wcs_regions.json)
-          [spec_regions](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/spec_regions.json)
-          
-          """
+
         def __init__(self, regions_def, wcs_info, wcs_regions, spec_regions, dist_info):
-             trans = RegionsSelector(mask_shape, regions_def, wcs_info, wcs_regions, spec_regions, dist_info )
+             trans = selector.RegionsSelector(mask_shape, regions_def, wcs_info, wcs_regions, spec_regions, dist_info )
              coord_sys = self.create_coordinate_system(wcs_info)
              super(IFUWCS, self).__init__(trans, coord_sys)
 
