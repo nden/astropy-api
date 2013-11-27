@@ -21,32 +21,37 @@ Transform from world coordinates to pixels:
 
     x, y = wcsobj.invert(ra, dec)
 
-`transform` may be an instance of `SelectorModel` which maps transforms to other quantities,
+`transform` may be an instance of [SelectorModel](https://github.com/nden/astropy-api/blob/generalized_wcs/generalized_wcs/selector.md) which maps transforms to other quantities,
 for example regions on detector but not limited to this. In this case:
 
     wcsobj(x,y)
 
-should be able to transform the coordinates using the correct transform.
+transforms the coordinates using the correct transform.
 This is handled by the `SelectorModel` class.
 
-    wcs_for_region_3 = wcsobj.select(label=3)
+One can choose a specific transform, for example the transform for region 3 of an IFU:
 
-returns the WCS object for region 3.
+    wcs_region_3 = wcsobj.select(label=3)
 
-If `transform` is an instance of `SelectorModel`, the `invert` method should map to the `invert()`
+If `transform` is an instance of `SelectorModel`, the `invert` method maps to the `invert()`
 methods of all individual transforms.
 
 It is possible to transform the output coordinates to a different coordinate system using other packages in astropy
 
-    wcsobj.coordinate_system.to(ra, dec, other_system)
+    wcsobj.output_coordinate_system.transform_to(ra, dec, other_system)
 
 One can add additional coordinate systems and transformations between them
 
-    wcsobj.add_transform(fromsys=self.input_coordinate_system, tosys=focal_plane, transform=pix2foc2)
+    focal = coordinate_systems.DetectorFrame(name="focal") 
+    wcsobj.add_transform(fromsys=self.input_coordinate_system, tosys=focal, transform=pix2foc2)
     
-and later use them like this
+and later use their names to do a transformation
 
-    undistorted_coordinates = wcsobj.transform(fromsys=`detector`, tosys='focal_plane', x, y)
+    undistorted_coordinates = wcsobj.transform(fromsys=`detector`, tosys='focal', x, y)
+    
+To see all coordinate systems defined by a WCS object:
+
+    wcsobj.coordinate_systems
     
 The special case of FITS WCS is handled through the `FITSWCS` class which inherits from `WCS`
 and uses the current `astropy.wcs`  to create the coordinate system object and the transforms.
