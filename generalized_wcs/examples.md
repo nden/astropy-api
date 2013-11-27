@@ -1,5 +1,6 @@
-These are examples of how an instrument scientist can use the package to construct a WCS for an instrument. All examples assume the WCS information was already read in from somewhere (either a FITS header or a JSON file). This does not deal with WCS serialization iCS:
-)
+These are examples of how an instrument scientist can use the package to construct a WCS for an instrument. All examples assume the WCS information was already read in from somewhere (either a FITS header or a JSON file). This does not deal with WCS serialization issues.)
+
+
     class ImagingWCS(WCS):
          """
          An example [dist_info](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/jwst_example/reference_files/distortion_image.json) JSON file.
