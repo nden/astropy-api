@@ -9,9 +9,15 @@ proposal to construct JWST WCS.
 User interface
 --------------
 
-Create a WCS object:
+Create a WCS object which transforms from `input_coordinate_system` to `output_coordinate_system` using `transform`:
 
-    wcsobj = WCS(transform, output_coordinate_system)
+    wcsobj = WCS(transform, output_coordinate_system, input_coordinate_system)
+    
+``input_cooridnate_system`` defaults to an instance of [DetectorFrame](https://github.com/nden/code-experiments/blob/master/generalized_wcs_api/prototype/coordinate_systems.py#L276) with units of `astropy.units.pixel`. To create a WCS which transforms from detector to sky coordinates:
+    
+    sky = coordinate_systems.SkyFrame('FK5', 'BARYCENTER', obstime, equinox, projection='TAN',
+                                      axes_names=['RA', 'DEC'], units=['deg', 'deg'])
+    wcsobj = WCS(transform, output_coordinate_system=sky, reference_pixel=CRPIX)
 
 Transform pixel coordinates to world coordinates:
 
@@ -43,7 +49,7 @@ It is possible to transform the output coordinates to a different coordinate sys
 One can add additional coordinate systems and transformations between them
 
     focal = coordinate_systems.DetectorFrame(name="focal") 
-    wcsobj.add_transform(fromsys=self.input_coordinate_system, tosys=focal, transform=pix2foc2)
+    wcsobj.add_transform(fromsys=self.input_coordinate_system, tosys=focal, transform=pix2foc)
     
 and later use their names to do a transformation
 
@@ -116,7 +122,7 @@ between them. This allows one to specify multiple coordinate systems and the tra
             self.add_edge(fromsys, tosys, transform=transform)
 
 
-        def transform(self, fromsys, tosys, *args):
+        def transform_to(self, fromsys, tosys, *args):
             """
             Perform a transformation between any two systems registered with this WCS.
             
